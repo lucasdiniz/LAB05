@@ -111,7 +111,7 @@ public class Playlist {
 		}
 		
 		if(!playlists.containsKey(nomePlaylist)){
-			return false;
+			throw new Exception("Impossivel pesquisar em playlist inexistente.");
 		}
 		
 		return playlists.get(nomePlaylist).contains(musica);

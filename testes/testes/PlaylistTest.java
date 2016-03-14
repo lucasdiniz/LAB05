@@ -199,5 +199,94 @@ public class PlaylistTest {
 		
 	}
 
+	@Test
+	public void testExisteMusica(){
+		
+		try{
+			assertEquals(true,playlistUm.existeMusica("axe", new Musica("berimbau metalizado", 4, "axe")));
+			assertEquals(true,playlistUm.existeMusica("rock", new Musica("hangar 18", 4, "rock")));
+			assertEquals(true,playlistUm.existeMusica("rock", new Musica("Last Night", 4, "rock")));
+			assertNotEquals(true, playlistUm.existeMusica("rock", new Musica("Hit the lights", 4, "heavy metal")));
+			assertNotEquals(true, playlistUm.existeMusica("forro", new Musica("hangar 18", 4, "rock")));
+			assertNotEquals(true,playlistUm.existeMusica("forro", new Musica("berimbau metalizado", 4, "axe")));
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
+		try{
+			assertEquals(true,playlistUm.existeMusica("jazz", new Musica("Highway Blues", 4, "jazz")));
+		}catch(Exception ex){
+			assertEquals("Impossivel pesquisar em playlist inexistente.", ex.getMessage());
+		}
+		
+		
+		try{
+			assertEquals(true,playlistUm.existeMusica("", new Musica("Highway Blues", 4, "jazz")));
+		}catch(Exception ex){
+			assertEquals("Nome da playlist nao pode ser vazio.", ex.getMessage());
+		}
+		
+		try{
+			assertEquals(true,playlistUm.existeMusica(null, new Musica("Highway Blues", 4, "jazz")));
+		}catch(Exception ex){
+			assertEquals("Nome da playlist e musica nao podem ser null.", ex.getMessage());
+		}
+		
+		try{
+			assertEquals(true,playlistUm.existeMusica("jazz",null));
+		}catch(Exception ex){
+			assertEquals("Nome da playlist e musica nao podem ser null.", ex.getMessage());
+		}
+		
+	}
+
+	@Test
+	public void testExisteMusicaPeloNome(){
+		
+		try{
+			assertEquals(true,playlistUm.existeMusicaPeloNome("axe", "berimbau metalizado"));
+			assertEquals(true,playlistUm.existeMusicaPeloNome("rock","hangar 18"));
+			assertEquals(true,playlistUm.existeMusicaPeloNome("rock", "Last Night"));
+			assertNotEquals(true, playlistUm.existeMusicaPeloNome("rock","Hit the lights"));
+			assertNotEquals(true, playlistUm.existeMusicaPeloNome("forro","hangar 18"));
+			assertNotEquals(true,playlistUm.existeMusicaPeloNome("forro", "berimbau metalizado"));
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
+		try{
+			assertEquals(true,playlistUm.existeMusicaPeloNome("jazz","Highway Blues"));
+		}catch(Exception ex){
+			assertEquals("Impossivel pesquisar em playlist inexistente.", ex.getMessage());
+		}
+		
+		
+		try{
+			assertEquals(true,playlistUm.existeMusicaPeloNome("", "Highway Blues"));
+		}catch(Exception ex){
+			assertEquals("Nome da playlist e nome da musica nao podem ser vazious ou null.", ex.getMessage());
+		}
+		
+		try{
+			assertEquals(true,playlistUm.existeMusicaPeloNome(null, "Highway Blues"));
+		}catch(Exception ex){
+			assertEquals("Nome da playlist e nome da musica nao podem ser vazious ou null.", ex.getMessage());
+		}
+		
+		try{
+			assertEquals(true,playlistUm.existeMusicaPeloNome("jazz",null));
+		}catch(Exception ex){
+			assertEquals("Nome da playlist e nome da musica nao podem ser vazious ou null.", ex.getMessage());
+		}
+		
+		try{
+			assertEquals(true,playlistUm.existeMusicaPeloNome("jazz",""));
+		}catch(Exception ex){
+			assertEquals("Nome da playlist e nome da musica nao podem ser vazious ou null.", ex.getMessage());
+		}
+		
+		
+	}
 
 }
+
