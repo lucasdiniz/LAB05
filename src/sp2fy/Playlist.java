@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class Playlist {
 
-	private ArrayList<Musica> playlist;
+	private ArrayList<Musica> musicas;
 	
 	public Playlist(){
-		playlist = new ArrayList<Musica>();
+		musicas = new ArrayList<Musica>();
 	}
 	
 	private int getIndicePeloNome(String nomeMusica){
-		for(int i = 0 ; i < playlist.size(); i++){
-			if(playlist.get(i).getTitulo().equalsIgnoreCase(nomeMusica)){
+		for(int i = 0 ; i < musicas.size(); i++){
+			if(musicas.get(i).getTitulo().equalsIgnoreCase(nomeMusica)){
 				return i;
 			}
 		}
@@ -25,17 +25,17 @@ public class Playlist {
 			throw new Exception("Musica a ser adicionada nao pode ser null.");
 		}
 		
-		if(playlist.contains(musicaParaAdicionar)){
+		if(musicas.contains(musicaParaAdicionar)){
 			return false;
 		}
-		return playlist.add(musicaParaAdicionar);
+		return musicas.add(musicaParaAdicionar);
 	}
 	
 	public boolean removeMusica(Musica musicaParaRemover)throws Exception{
 		if(musicaParaRemover == null){
 			throw new Exception("Musica a ser removida nao pode ser null.");
 		}
-		return playlist.remove(musicaParaRemover);
+		return musicas.remove(musicaParaRemover);
 	}
 	
 	public boolean removeMusicaPeloNome(String nomeMusica) throws Exception{
@@ -46,7 +46,7 @@ public class Playlist {
 		if(indice == -1){
 			return false;
 		}
-		playlist.remove(indice);
+		musicas.remove(indice);
 		return true;
 	}
 	
@@ -54,7 +54,7 @@ public class Playlist {
 		if(musicaParaBuscar == null){
 			throw new Exception("Musica a ser buscada nao pode ser null.");
 		}
-		return playlist.contains(musicaParaBuscar);
+		return musicas.contains(musicaParaBuscar);
 	}
 	
 	public boolean contemMusicaPeloNome(String nomeMusica) throws Exception{
@@ -68,21 +68,21 @@ public class Playlist {
 	
 	public int getDuracao(){
 		int duracao = 0;
-		for(Musica musica : playlist){
+		for(Musica musica : musicas){
 			duracao += musica.getDuracao();
 		}
 		return duracao;
 	}
 	
 	public ArrayList<Musica> getMusicas(){
-		return this.playlist;
+		return this.musicas;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((playlist == null) ? 0 : playlist.hashCode());
+		result = prime * result + ((musicas == null) ? 0 : musicas.hashCode());
 		return result;
 	}
 
@@ -90,14 +90,14 @@ public class Playlist {
 	public boolean equals(Object obj) {
 		if(obj instanceof Playlist){
 			Playlist outraPlaylist = (Playlist) obj;
-			return this.playlist.equals(outraPlaylist.getMusicas());
+			return this.musicas.equals(outraPlaylist.getMusicas());
 		}
 		return false;
 	}
 
 	@Override
 	public String toString() {
-		return "Playlist [playlist=" + playlist + "]";
+		return "Playlist [playlist=" + musicas + "]";
 	}
 	
 }

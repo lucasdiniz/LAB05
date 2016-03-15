@@ -165,6 +165,28 @@ public class PlaylistTest {
 			fail("Nao deveria lancar excecao.");
 		}
 	}
-
+	
+	@Test
+	public void testEquals(){
+		try{
+			Playlist playlistDois,playlistTres;
+			playlistDois = new Playlist();
+			playlistTres = new Playlist();
+			assertEquals(playlistDois, playlistTres);
+			playlistDois.adicionaMusica(kids);
+			playlistTres.adicionaMusica(isThisIt);
+			assertNotEquals(playlistDois, playlistTres);
+			playlistDois.adicionaMusica(isThisIt);
+			playlistTres.adicionaMusica(kids);
+			assertNotEquals(playlistDois, playlistTres); //Musicas iguais porem em ordem diferente
+			playlistTres.removeMusica(isThisIt);
+			playlistTres.adicionaMusica(isThisIt); 
+			assertEquals(playlistDois, playlistTres); //Musicas iguais na mesma ordem
+			
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
+	}
 	
 }

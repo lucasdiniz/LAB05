@@ -32,6 +32,7 @@ public class Musica {
 	public String getGenero(){
 		return this.genero;
 	}
+	
 
 	@Override
 	public int hashCode() {

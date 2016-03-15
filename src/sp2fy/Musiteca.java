@@ -46,7 +46,7 @@ public class Musiteca {
 	
 	private int getIndiceAlbum(String nomeAlbum){
 		for(int i = 0 ; i < albuns.size() ; i++){
-			if(albuns.get(i).getTitulo().equals(nomeAlbum)){
+			if(albuns.get(i).getTitulo().equalsIgnoreCase(nomeAlbum)){
 				return i;
 			}
 		}
@@ -70,6 +70,16 @@ public class Musiteca {
 		return this.albuns;
 	}
 	
+	public int getDuracaoPlaylist(String nomePlaylist) throws Exception{
+		if(nomePlaylist == null || nomePlaylist.trim().equals("")){
+			throw new Exception("Nome da playlist nao pode ser vazio ou null.");
+		}
+		if(!playlists.containsKey(nomePlaylist)){
+			throw new Exception("Playlist inexistente.");
+		}
+		return playlists.get(nomePlaylist).getDuracao();
+	}
+	
 	public boolean adicionaPlaylist(String nomePlaylist, String nomeAlbum, int faixa) throws Exception{
 		
 		if(nomePlaylist == null || nomeAlbum == null || nomePlaylist.trim().equals("") || nomeAlbum.trim().equals("")){
@@ -91,9 +101,9 @@ public class Musiteca {
 		}
 		
 		Playlist playlistDoUsuario = playlists.get(nomePlaylist);
-		/*Pode lancar excecao no caso do numero da faixa ser maior que o album*/
+		/*Lanca excecao quando o numero da faixa eh maior que o tamanho do album*/
 		Musica musicaParaAdicionar = albuns.get(indice).getMusicaNaFaixa(faixa);
-		/*--------------------------------------------------------------------*/
+		/*---------------------------------------------------------------------*/
 		boolean foiAdicionado = playlistDoUsuario.adicionaMusica(musicaParaAdicionar);
 		playlists.put(nomePlaylist, playlistDoUsuario);
 		
@@ -107,6 +117,10 @@ public class Musiteca {
 		if(nomePlaylist.trim().equals("")){
 			throw new Exception("Nome da playlist nao pode ser vazio.");
 		}
+		
+		if(!playlists.containsKey(nomePlaylist)){
+			throw new Exception("Playlist inexistente.");
+		}
 
 		Playlist playlistDoUsuario = playlists.get(nomePlaylist);
 		boolean foiRemovido = playlistDoUsuario.removeMusica(musica);
@@ -118,6 +132,10 @@ public class Musiteca {
 		
 		if(nomePlaylist == null || nomeMusica == null || nomePlaylist.trim().equals("") || nomeMusica.trim().equals("")){
 			throw new Exception("Nome da playlist e nome da musica nao devem ser vazios ou null.");
+		}
+		
+		if(!playlists.containsKey(nomePlaylist)){
+			throw new Exception("Playlist inexistente.");
 		}
 		
 		Playlist playlistDoUsuario = playlists.get(nomePlaylist);
@@ -134,7 +152,11 @@ public class Musiteca {
 		}
 		
 		if(nomePlaylist.trim().equals("")){
-			throw new Exception("Nome da playlist nao pdoe ser vazio.");
+			throw new Exception("Nome da playlist nao pode ser vazio.");
+		}
+		
+		if(!playlists.containsKey(nomePlaylist)){
+			throw new Exception("Playlist inexistente.");
 		}
 		
 		Playlist playlistDoUsuario = playlists.get(nomePlaylist);
@@ -146,6 +168,11 @@ public class Musiteca {
 		if(nomePlaylist == null || nomeMusica == null || nomePlaylist.trim().equals("") || nomeMusica.trim().equals("")){
 			throw new Exception("Nome da playlist e nome da musica nao devem ser vazios ou null.");
 		}
+		
+		if(!playlists.containsKey(nomePlaylist)){
+			throw new Exception("Playlist inexistente.");
+		}
+		
 		Playlist playlistDoUsuario = playlists.get(nomePlaylist);
 		return playlistDoUsuario.contemMusicaPeloNome(nomeMusica);
 	}
