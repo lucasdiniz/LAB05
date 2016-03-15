@@ -1,7 +1,6 @@
 package testes;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import sp2fy.Album;

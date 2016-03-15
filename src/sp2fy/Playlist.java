@@ -1,150 +1,103 @@
 package sp2fy;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Playlist {
 
-	private HashMap<String, ArrayList<Musica>> playlists;
+	private ArrayList<Musica> playlist;
 	
 	public Playlist(){
-		playlists = new HashMap<String, ArrayList<Musica>>();
+		playlist = new ArrayList<Musica>();
 	}
 	
-	public boolean existePlaylist(String nomeDaPlaylist)throws Exception{
-		
-		if(nomeDaPlaylist == null || nomeDaPlaylist.trim().equals("")){
-			throw new Exception("Nome da playlist nao pode ser vazio ou null.");
-		}
-		
-		return playlists.containsKey(nomeDaPlaylist);
-	}
-	
-	public boolean criaPlaylist(String nomeDaPlaylist) throws Exception{
-		if(nomeDaPlaylist == null ||nomeDaPlaylist.trim().equals("")){
-			throw new Exception("Nome da playlist nao pode ser vazio ou null.");
-		}
-		playlists.put(nomeDaPlaylist, new ArrayList<Musica>());
-		return true;
-	}
-	
-	public boolean adiciona(String nomePlaylist, Musica musicaParaAdicionar) throws Exception{
-		if(nomePlaylist == null || musicaParaAdicionar == null){
-			throw new Exception("Nome da playlist e musica nao podem ser null.");
-		}
-		
-		if(nomePlaylist.trim().equals("")){
-			throw new Exception("Nome da playlist nao pode ser vazio.");
-		}
-		
-		if(!existePlaylist(nomePlaylist)){
-			criaPlaylist(nomePlaylist);
-		}
-		
-		ArrayList<Musica> musicasDaPlaylist = playlists.get(nomePlaylist);
-		
-		if(musicasDaPlaylist.contains(musicaParaAdicionar)){
-			throw new Exception("Musica ja esta na playlist.");
-		}
-
-		musicasDaPlaylist.add(musicaParaAdicionar);
-		playlists.put(nomePlaylist, musicasDaPlaylist);
-		return true;
-
-	}
-	
-	public boolean remove(String nomePlaylist,Musica musica) throws Exception{
-		
-		if(nomePlaylist == null || musica == null){
-			throw new Exception("Nome da playlist e musica nao podem ser null.");
-		}
-		
-		if(nomePlaylist.trim().equals("")){
-			throw new Exception("Nome da playlist nao pode ser vazio.");
-		}
-		
-		if(!existePlaylist(nomePlaylist)){
-			throw new Exception("Impossivel remover, playlist inexistente.");
-		}
-		
-		ArrayList<Musica> musicasAtuais = playlists.get(nomePlaylist);
-		
-		if(!musicasAtuais.contains(musica)){
-			throw new Exception("Impossivel remover musica nao contida na playlist.");
-		}
-	
-		musicasAtuais.remove(musica);
-		playlists.put(nomePlaylist, musicasAtuais);
-		return true;
-	}
-	
-	public boolean removePeloNome(String nomePlaylist,String nomeMusica) throws Exception{
-		
-		if(nomeMusica == null || nomePlaylist == null || nomePlaylist.trim().equals("") || nomeMusica.trim().equals("")){
-			throw new Exception("Nome da playlist e nome da musica nao podem ser vazios ou null.");
-		}
-		
-		if(!existePlaylist(nomePlaylist)){
-			throw new Exception("Impossivel remover, playlist inexistente.");
-		}
-
-		int indice = getIndiceNaPlaylist(nomeMusica, nomePlaylist);
-		
-		if(indice == -1) throw new Exception("Impossivel remover musica nao contida na playlist.");
-		else{
-			ArrayList<Musica> listaDeMusicas = playlists.get(nomePlaylist);
-			listaDeMusicas.remove(indice);
-			playlists.put(nomePlaylist, listaDeMusicas);
-		}
-		
-		return true;
-	}
-	
-	public boolean existeMusica(String nomePlaylist,Musica musica) throws Exception{
-		
-		if(musica == null || nomePlaylist == null){
-			throw new Exception("Nome da playlist e musica nao podem ser null.");
-		}
-		
-		if(nomePlaylist.trim().equals("")){
-			throw new Exception("Nome da playlist nao pode ser vazio.");
-		}
-		
-		if(!playlists.containsKey(nomePlaylist)){
-			throw new Exception("Impossivel pesquisar em playlist inexistente.");
-		}
-		
-		return playlists.get(nomePlaylist).contains(musica);
-	}
-	
-	public boolean existeMusicaPeloNome(String nomePlaylist,String nomeMusica) throws Exception{
-		
-		if(nomeMusica == null || nomePlaylist == null || nomePlaylist.trim().equals("") || nomeMusica.trim().equals("")){
-			throw new Exception("Nome da playlist e nome da musica nao podem ser vazious ou null.");
-		}
-		
-		if(!playlists.containsKey(nomePlaylist)){
-			return false;
-		}
-		
-		return getIndiceNaPlaylist(nomeMusica, nomePlaylist) != -1;
-	}
-	
-	private int getIndiceNaPlaylist(String nomeMusica,String nomePlaylist) throws Exception{
-		
-		if(nomeMusica == null || nomePlaylist == null || nomePlaylist.trim().equals("") || nomeMusica.trim().equals("")){
-			throw new Exception("Nome da playlist e nome da musica nao podem vazios ser null.");
-		}
-		
-		ArrayList<Musica> listaDeMusicas = playlists.get(nomePlaylist);
-		
-		for(int i = 0 ; i < listaDeMusicas.size() ; i++){
-			if(listaDeMusicas.get(i).getTitulo().equalsIgnoreCase(nomeMusica)){
+	private int getIndicePeloNome(String nomeMusica){
+		for(int i = 0 ; i < playlist.size(); i++){
+			if(playlist.get(i).getTitulo().equalsIgnoreCase(nomeMusica)){
 				return i;
 			}
 		}
 		return -1;
 	}
 	
+	public boolean adicionaMusica(Musica musicaParaAdicionar) throws Exception{
+		
+		if(musicaParaAdicionar == null){
+			throw new Exception("Musica a ser adicionada nao pode ser null.");
+		}
+		
+		if(playlist.contains(musicaParaAdicionar)){
+			return false;
+		}
+		return playlist.add(musicaParaAdicionar);
+	}
+	
+	public boolean removeMusica(Musica musicaParaRemover)throws Exception{
+		if(musicaParaRemover == null){
+			throw new Exception("Musica a ser removida nao pode ser null.");
+		}
+		return playlist.remove(musicaParaRemover);
+	}
+	
+	public boolean removeMusicaPeloNome(String nomeMusica) throws Exception{
+		if(nomeMusica == null || nomeMusica.trim().equals("")){
+			throw new Exception("Nome da musica a ser removida nao pode ser vazio ou nulo.");
+		}
+		int indice = getIndicePeloNome(nomeMusica);
+		if(indice == -1){
+			return false;
+		}
+		playlist.remove(indice);
+		return true;
+	}
+	
+	public boolean contemMusica(Musica musicaParaBuscar) throws Exception{
+		if(musicaParaBuscar == null){
+			throw new Exception("Musica a ser buscada nao pode ser null.");
+		}
+		return playlist.contains(musicaParaBuscar);
+	}
+	
+	public boolean contemMusicaPeloNome(String nomeMusica) throws Exception{
+		
+		if(nomeMusica == null || nomeMusica.trim().equals("")){
+			throw new Exception("Nome da musica a ser buscada nao pode ser vaziou ou null.");
+		}
+		
+		return getIndicePeloNome(nomeMusica) != -1;
+	}
+	
+	public int getDuracao(){
+		int duracao = 0;
+		for(Musica musica : playlist){
+			duracao += musica.getDuracao();
+		}
+		return duracao;
+	}
+	
+	public ArrayList<Musica> getMusicas(){
+		return this.playlist;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((playlist == null) ? 0 : playlist.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Playlist){
+			Playlist outraPlaylist = (Playlist) obj;
+			return this.playlist.equals(outraPlaylist.getMusicas());
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "Playlist [playlist=" + playlist + "]";
+	}
 	
 }
