@@ -60,6 +60,158 @@ public class MusitecaTest {
 	}
 
 	@Test
+	public void testAdicionaMusicaNoAlbum(){
+		
+		try{
+			Musica sunKing = new Musica("Sun king", 4, "rock");
+			assertEquals(false,theBeatles.adicionaMusicaNoAlbum(something, "abbey road"));//Musica ja esta no album
+			assertEquals(false,theBeatles.adicionaMusicaNoAlbum(comeTogether, "abbey road"));//Musica ja esta no album
+			assertEquals(true,theBeatles.adicionaMusicaNoAlbum(sunKing, "abbey road"));//Musica nao esta no album
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
+		try{
+			theBeatles.adicionaMusicaNoAlbum(something, "album inexistente");
+		}catch(Exception ex){
+			assertEquals("Album inexistente.", ex.getMessage());
+		}
+		
+		try{
+			theBeatles.adicionaMusicaNoAlbum(null, "album inexistente");
+		}catch(Exception ex){
+			assertEquals("Musica e nome do album nao podem ser null.", ex.getMessage());
+		}
+		
+		try{
+			theBeatles.adicionaMusicaNoAlbum(something, null);
+		}catch(Exception ex){
+			assertEquals("Musica e nome do album nao podem ser null.", ex.getMessage());
+		}
+		
+		try{
+			theBeatles.adicionaMusicaNoAlbum(something, "  ");
+		}catch(Exception ex){
+			assertEquals("Nome do album nao podem ser vazio.", ex.getMessage());
+		}
+	}
+
+	@Test
+	public void testRemoveMusicaNoAlbum(){
+		try{
+			Musica sunKing = new Musica("Sun king", 4, "rock");
+			assertEquals(true, theBeatles.removeMusicaNoAlbum(something, "abbey road"));
+			assertEquals(true, theBeatles.removeMusicaNoAlbum(comeTogether, "abbey road"));
+			assertEquals(false, theBeatles.removeMusicaNoAlbum(sunKing, "abbey road")); //Musica nao esta no album
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
+		try{
+			theBeatles.removeMusicaNoAlbum(something, "album inexistente");
+		}catch(Exception ex){
+			assertEquals("Album inexistente.", ex.getMessage());
+		}
+		
+		try{
+			theBeatles.removeMusicaNoAlbum(null, "album inexistente");
+		}catch(Exception ex){
+			assertEquals("Musica e nome do album nao podem ser null.", ex.getMessage());
+		}
+		
+		try{
+			theBeatles.removeMusicaNoAlbum(something, null);
+		}catch(Exception ex){
+			assertEquals("Musica e nome do album nao podem ser null.", ex.getMessage());
+		}
+		
+		try{
+			theBeatles.removeMusicaNoAlbum(something, "  ");
+		}catch(Exception ex){
+			assertEquals("Nome do album nao podem ser vazio.", ex.getMessage());
+		}
+	}
+
+	@Test
+	public void testPesquisaMusica(){
+		
+		try{
+			Musica musicaInexistente = new Musica("nao existe", 4, "nao existe");
+			assertEquals(true, theBeatles.pesquisaMusica(something));
+			assertEquals(true, theBeatles.pesquisaMusica(comeTogether));
+			assertEquals(false, theBeatles.pesquisaMusica(musicaInexistente));
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
+		try{
+			theBeatles.pesquisaMusica(null);
+		}catch(Exception ex){
+			assertEquals("Musica nao pode ser nula.", ex.getMessage());
+		}
+		
+	}
+	
+	@Test
+	public void testRemoveMusicaNoAlbumPeloNome(){
+		try{
+			assertEquals(true, theBeatles.removeMusicaNoAlbumPeloNome("something", "abbey road"));
+			assertEquals(true, theBeatles.removeMusicaNoAlbumPeloNome("come together", "abbey road"));
+			assertEquals(false, theBeatles.removeMusicaNoAlbumPeloNome("sun king", "abbey road")); //Musica nao esta no album
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
+		try{
+			theBeatles.removeMusicaNoAlbumPeloNome("something", "album inexistente");
+		}catch(Exception ex){
+			assertEquals("Album inexistente.", ex.getMessage());
+		}
+		
+		try{
+			theBeatles.removeMusicaNoAlbumPeloNome(null, "abbey road");
+		}catch(Exception ex){
+			assertEquals("Nome da musica e nome do album nao podem ser null.", ex.getMessage());
+		}
+		
+		try{
+			theBeatles.removeMusicaNoAlbumPeloNome("something", null);
+		}catch(Exception ex){
+			assertEquals("Nome da musica e nome do album nao podem ser null.", ex.getMessage());
+		}
+		
+		try{
+			theBeatles.removeMusicaNoAlbumPeloNome("something", "  ");
+		}catch(Exception ex){
+			assertEquals("Nome da musica e nome do album nao podem ser null.", ex.getMessage());
+		}
+		
+	}
+	
+	@Test
+	public void testPesquisaMusicaPeloNome(){
+		try{
+			assertEquals(true, theBeatles.pesquisaMusicaPeloNome("something"));
+			assertEquals(true, theBeatles.pesquisaMusicaPeloNome("come Together"));
+			assertEquals(false, theBeatles.pesquisaMusicaPeloNome("musica Inexistente"));
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
+		try{
+			theBeatles.pesquisaMusicaPeloNome(null);
+		}catch(Exception ex){
+			assertEquals("Nome da musica nao pode ser nulo ou vazio.", ex.getMessage());
+		}
+		
+		try{
+			theBeatles.pesquisaMusicaPeloNome(" ");
+		}catch(Exception ex){
+			assertEquals("Nome da musica nao pode ser nulo ou vazio.", ex.getMessage());
+		}
+	}
+	
+	@Test
 	public void testRemoveAlbum(){
 		try{
 			assertNotEquals(true,theBeatles.removeAlbum(new Album("album inexistente","nao existe",2016)));
@@ -415,6 +567,5 @@ public class MusitecaTest {
 			fail("Nao deveria lancar excecao.");
 		}
 	}
-	
 	
 }

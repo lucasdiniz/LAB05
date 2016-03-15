@@ -1,8 +1,10 @@
 package testes;
 
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import sp2fy.Album;
 import sp2fy.Musica;
 
@@ -29,21 +31,7 @@ public class AlbumTest {
 		}
 		
 	}
-	
-	@Test
-	public void testConstrutorCorreto() throws Exception{
-		
-		try{
-			Album safadao = new Album("Safadao 10 anos","Safadao",2003);
-			Album pedrinho = new Album("Funk ostentacao","MC Pedrinho",2015);
-			Album vingadora = new Album("Paredao metralhadora","Vingadora",2016);
-			Album losHermanos = new Album("Los Hermanos","Ventura", 2003);
-		}catch(Exception ex){
-			fail("Nao deveria lancar excecao.");
-		}
-		
-	}
-	
+
 
 	@Test
 	public void testEquals() {
@@ -158,6 +146,22 @@ public class AlbumTest {
 		catch(Exception ex){
 			fail("Nao deveria lancar excecao.");
 		}
+		
+		try{
+			theStrokes.existeMusica(" ");
+		}
+		catch(Exception ex){
+			assertEquals("Musica a ser buscada nao pode ser nula ou vazia.", ex.getMessage());
+		}
+		
+		try{
+			theStrokes.existeMusica(null);
+		}
+		catch(Exception ex){
+			assertEquals("Musica a ser buscada nao pode ser nula ou vazia.", ex.getMessage());
+		}
+		
+		
 	}
 	
 	
@@ -179,9 +183,9 @@ public class AlbumTest {
 		}
 		
 		try{
-			metallica.adicionaMusica(new Musica("All nightmare long", 8, "Heavy metal"));
+			assertNotEquals(true,metallica.adicionaMusica(new Musica("All nightmare long", 8, "Heavy metal")));
 		}catch(Exception ex){
-			assertEquals("Musica a ser adicionada ja existe.", ex.getMessage());
+			fail("Nao deveria lancar excecao.");
 		}
 	}
 
@@ -190,29 +194,30 @@ public class AlbumTest {
 		try{
 			
 			assertEquals(true, metallica.existeMusica("That Was Just Your Life"));
-			metallica.removeMusica("That Was Just Your Life");
+			assertEquals(true,metallica.removeMusica("That Was Just Your Life"));
 			assertEquals(false, metallica.existeMusica("That Was Just Your Life"));
 			
 			assertEquals(true, metallica.existeMusica("The End of the Line"));
-			metallica.removeMusica("The End of the Line");
+			assertEquals(true,metallica.removeMusica("The End of the Line"));
 			assertEquals(false, metallica.existeMusica("The End of the Line"));
 			
-			assertEquals(true, metallica.existeMusica("Broken, Beat and Scarred"));
-			metallica.removeMusica("Broken, Beat and Scarred");
-			assertEquals(false, metallica.existeMusica("Broken, Beat and Scarred"));
-			
-			assertEquals(true, metallica.existeMusica("The Day That Never Comes"));
-			metallica.removeMusica("The Day That Never Comes");
-			assertEquals(false, metallica.existeMusica("The Day That Never Comes"));
+			assertEquals(false, metallica.removeMusica("Musica inexistente"));
+
 			
 		}catch(Exception ex){
 			fail("Nao deveria lancar excecao.");
 		}
 		
 		try{
-			metallica.removeMusica("Na pop 100 ela empina o bumbum");
+			metallica.removeMusica(" ");
 		}catch(Exception ex){
-			assertEquals("Impossivel remover, musica inexistente.", ex.getMessage());
+			assertEquals("Musica a ser removida nao pode ser nula ou vazia.", ex.getMessage());
+		}
+		
+		try{
+			metallica.removeMusica(null);
+		}catch(Exception ex){
+			assertEquals("Musica a ser removida nao pode ser nula ou vazia.", ex.getMessage());
 		}
 		
 	}

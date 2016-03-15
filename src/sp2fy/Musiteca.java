@@ -28,6 +28,100 @@ public class Musiteca {
 	
 	}
 	
+	public boolean adicionaMusicaNoAlbum(Musica musicaParaAdicionar , String nomeAlbum) throws Exception{
+		
+		if(musicaParaAdicionar == null || nomeAlbum == null){
+			throw new Exception("Musica e nome do album nao podem ser null.");
+		}
+		
+		if(nomeAlbum.trim().equals("")){
+			throw new Exception("Nome do album nao podem ser vazio.");
+		}
+		
+		int indiceDoAlbum = getIndiceAlbum(nomeAlbum);
+		
+		if(indiceDoAlbum == -1){
+			throw new Exception("Album inexistente.");
+		}
+		
+		Album albumDoUsuario = albuns.get(indiceDoAlbum);
+		boolean foiAdicionado = albumDoUsuario.adicionaMusica(musicaParaAdicionar);
+		albuns.add(indiceDoAlbum, albumDoUsuario);
+		
+		return foiAdicionado;
+	}
+	
+	public boolean removeMusicaNoAlbum(Musica musicaParaRemover , String nomeAlbum) throws Exception{
+		
+		if(musicaParaRemover == null || nomeAlbum == null){
+			throw new Exception("Musica e nome do album nao podem ser null.");
+		}
+		
+		if(nomeAlbum.trim().equals("")){
+			throw new Exception("Nome do album nao podem ser vazio.");
+		}
+		
+		int indiceDoAlbum = getIndiceAlbum(nomeAlbum);
+		
+		if(indiceDoAlbum == -1){
+			throw new Exception("Album inexistente.");
+		}
+		
+		Album albumDoUsuario = albuns.get(indiceDoAlbum);
+		boolean foiRemovido = albumDoUsuario.removeMusica(musicaParaRemover.getTitulo());
+		albuns.add(indiceDoAlbum, albumDoUsuario);
+		
+		return foiRemovido;
+	}
+	
+	public boolean pesquisaMusica(Musica musicaParaPesquisar) throws Exception{
+		
+		if(musicaParaPesquisar == null){
+			throw new Exception("Musica nao pode ser nula.");
+		}
+		
+		for(Album album : albuns){
+			if(album.existeMusica(musicaParaPesquisar.getTitulo())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean removeMusicaNoAlbumPeloNome(String nomeMusica , String nomeAlbum) throws Exception{
+		
+		if(nomeMusica == null || nomeAlbum == null || nomeAlbum.trim().equals("") || nomeMusica.trim().equals("")){
+			throw new Exception("Nome da musica e nome do album nao podem ser null.");
+		}
+		
+		
+		int indiceDoAlbum = getIndiceAlbum(nomeAlbum);
+		
+		if(indiceDoAlbum == -1){
+			throw new Exception("Album inexistente.");
+		}
+		
+		Album albumDoUsuario = albuns.get(indiceDoAlbum);
+		boolean foiRemovido = albumDoUsuario.removeMusica(nomeMusica);
+		albuns.add(indiceDoAlbum, albumDoUsuario);
+		
+		return foiRemovido;
+	}
+	
+	public boolean pesquisaMusicaPeloNome(String nomeMusica) throws Exception{
+		
+		if(nomeMusica == null || nomeMusica.trim().equals("")){
+			throw new Exception("Nome da musica nao pode ser nulo ou vazio.");
+		}
+		
+		for(Album album : albuns){
+			if(album.existeMusica(nomeMusica)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean removeAlbum(Album albumParaRemover) throws Exception{
 		
 		if(albumParaRemover == null){

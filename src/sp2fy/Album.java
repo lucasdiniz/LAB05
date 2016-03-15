@@ -44,12 +44,15 @@ public class Album implements Comparable<Album>{
 	}
 	
 	public boolean adicionaMusica(Musica novaMusica) throws Exception{
-		if(faixas.contains(novaMusica)){
-			throw new Exception("Musica a ser adicionada ja existe.");
-		}
+
 		if(novaMusica == null){
 			throw new Exception("Musica a ser adicionada nao pode ser nula.");
 		}
+	
+		if(faixas.contains(novaMusica)){
+			return false;
+		}
+
 		return faixas.add(novaMusica);
 	}
 	
@@ -80,26 +83,32 @@ public class Album implements Comparable<Album>{
 	}
 	
 	public boolean removeMusica(String tituloParaRemover) throws Exception{
+		
+		if(tituloParaRemover == null || tituloParaRemover.trim().equals("")){
+			throw new Exception("Musica a ser removida nao pode ser nula ou vazia.");
+		}
+		
 		int indice = getIndicePeloTitulo(tituloParaRemover);
 		
-		if(indice == -1){
-			throw new Exception("Impossivel remover, musica inexistente.");
-		}
-		else{
-			faixas.remove(indice);
-			return true;
-		}
+		if(indice == -1) return false;
+	
+		faixas.remove(indice);
+		return true;
 		
 	}
 	
-	public boolean existeMusica(String tituloDaMusica){
+	public boolean existeMusica(String tituloDaMusica) throws Exception{
+		
+		if(tituloDaMusica == null || tituloDaMusica.trim().equals("")){
+			throw new Exception("Musica a ser buscada nao pode ser nula ou vazia.");
+		}
 		return getIndicePeloTitulo(tituloDaMusica) != -1;
 
 	}
 	
 	private int getIndicePeloTitulo(String titulo){
 		for(int i = 0 ; i < faixas.size() ; i++){
-			if(faixas.get(i).getTitulo() == titulo){
+			if(faixas.get(i).getTitulo().equalsIgnoreCase(titulo)){
 				return i;
 			}
 		}
