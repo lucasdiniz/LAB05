@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Album implements Comparable<Album>{
 	
+	private final int MIN_ANO = 1900;
 	private ArrayList <Musica> faixas;
 	private String titulo,artista;
 	private int ano;
@@ -19,7 +20,7 @@ public class Album implements Comparable<Album>{
 			throw new Exception("Nome do artista nao pode ser vazio ou nulo.");
 		}
 		
-		if(ano <= 1900){
+		if(ano <= MIN_ANO){
 			throw new Exception("Ano do album deve ser maior que 1900.");
 		}
 		
