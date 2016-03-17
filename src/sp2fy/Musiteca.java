@@ -74,6 +74,7 @@ public class Musiteca {
 		return foiRemovido;
 	}
 	
+	
 	public boolean pesquisaMusica(Musica musicaParaPesquisar) throws Exception{
 		
 		if(musicaParaPesquisar == null){

@@ -12,36 +12,75 @@ public class Album implements Comparable<Album>{
 
 	public Album(String titulo,String artista,int ano) throws Exception{
 		
+		setArtista(artista);
+		setTitulo(titulo);
+		setAno(ano);
+		this.faixas = new ArrayList <Musica>();
+		this.isFavorite = false;
+	}
+	
+	
+	public void setTitulo(String titulo) throws Exception{
 		if(titulo == null || titulo.trim().equals("")){
 			throw new Exception("Titulo do album nao pode ser vazio ou nulo.");
 		}
 		
+		this.titulo = titulo;
+	}
+	
+	
+	public void setArtista(String artista) throws Exception{
 		if(artista == null || artista.trim().equals("")){
 			throw new Exception("Nome do artista nao pode ser vazio ou nulo.");
 		}
+		
+		this.artista = artista;
+	}
+	
+	
+	public void setAno(int ano) throws Exception{
 		
 		if(ano <= MIN_ANO){
 			throw new Exception("Ano do album deve ser maior que 1900.");
 		}
 		
-		this.faixas = new ArrayList <Musica>();
-		this.titulo = titulo;
-		this.artista = artista;
 		this.ano = ano;
-		this.isFavorite = false;
 	}
+	
 	
 	public int getAno(){
 		return this.ano;
 	}
 	
+	
+	public int getDuracao(){
+		int duracaoTotal = 0;
+		for(Musica mus : faixas){
+			duracaoTotal += mus.getDuracao();
+		}
+		return duracaoTotal;
+	}
+	
+	
+	public String getArtista(){
+		return this.artista;
+	}
+	
+	
+	public String getTitulo(){
+		return this.titulo;
+	}
+	
+	
 	public boolean isFavorito(){
 		return this.isFavorite;
 	}
 	
+	
 	public void mudaStatusDeFavorito(){
 		this.isFavorite = (isFavorite == true)? false : true;
 	}
+	
 	
 	public boolean adicionaMusica(Musica novaMusica) throws Exception{
 
@@ -56,6 +95,7 @@ public class Album implements Comparable<Album>{
 		return faixas.add(novaMusica);
 	}
 	
+	
 	public Musica getMusicaNaFaixa(int indice) throws Exception{
 		if(indice <= 0){
 			throw new Exception("O numero da faixa deve ser positivo.");
@@ -66,21 +106,6 @@ public class Album implements Comparable<Album>{
 		return faixas.get(indice - 1); //Pois albuns de musica sao indexados a partir de 1
 	}
 	
-	public int getDuracao(){
-		int duracaoTotal = 0;
-		for(Musica mus : faixas){
-			duracaoTotal += mus.getDuracao();
-		}
-		return duracaoTotal;
-	}
-	
-	public String getArtista(){
-		return this.artista;
-	}
-	
-	public String getTitulo(){
-		return this.titulo;
-	}
 	
 	public boolean removeMusica(String tituloParaRemover) throws Exception{
 		
@@ -97,6 +122,7 @@ public class Album implements Comparable<Album>{
 		
 	}
 	
+	
 	public boolean existeMusica(String tituloDaMusica) throws Exception{
 		
 		if(tituloDaMusica == null || tituloDaMusica.trim().equals("")){
@@ -105,6 +131,7 @@ public class Album implements Comparable<Album>{
 		return getIndicePeloTitulo(tituloDaMusica) != -1;
 
 	}
+	
 	
 	private int getIndicePeloTitulo(String titulo){
 		for(int i = 0 ; i < faixas.size() ; i++){
@@ -116,11 +143,13 @@ public class Album implements Comparable<Album>{
 	}
 
 
+	
 	@Override
 	public String toString() {
 		return titulo + " by " + artista;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -130,6 +159,7 @@ public class Album implements Comparable<Album>{
 		return result;
 	}
 
+	
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof Album){
@@ -139,6 +169,7 @@ public class Album implements Comparable<Album>{
 		return false;
 	}
 
+	
 	@Override
 	public int compareTo(Album outroAlbum) {
 		return this.ano - outroAlbum.getAno();

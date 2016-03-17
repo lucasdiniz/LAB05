@@ -6,19 +6,11 @@ public class Musica {
 	private int duracao;
 	
 	public Musica(String nome,int duracao,String genero)throws Exception{
-		if(nome == null || nome.trim().equals("")){
-			throw new Exception("Titulo da musica nao pode ser nulo ou vazio.");
-		}
-		if(genero == null || genero.trim().equals("")){
-			throw new Exception("Genero da musica nao pode ser nulo ou vazio.");
-		}
-		if(duracao <= 0){
-			throw new Exception("Duracao da musica nao pode ser negativa.");
-		}
-		
-		this.titulo = nome;
-		this.genero = genero;
-		this.duracao = duracao;
+	
+		setTitulo(nome);
+		setGenero(genero);
+		setDuracao(duracao);
+
 	}
 	
 	public String getTitulo(){
@@ -31,6 +23,29 @@ public class Musica {
 	
 	public String getGenero(){
 		return this.genero;
+	}
+	
+	public void setTitulo(String nome) throws Exception{
+		if(nome == null || nome.trim().equals("")){
+			throw new Exception("Titulo da musica nao pode ser nulo ou vazio.");
+		}
+
+		this.titulo = nome;
+
+	}
+	
+	public void setDuracao(int duracao) throws Exception{
+		if(duracao <= 0){
+			throw new Exception("Duracao da musica nao pode ser negativa.");
+		}
+		this.duracao = duracao;
+	}
+	
+	public void setGenero(String genero) throws Exception{
+		if(genero == null || genero.trim().equals("")){
+			throw new Exception("Genero da musica nao pode ser nulo ou vazio.");
+		}
+		this.genero = genero;
 	}
 	
 
