@@ -3,9 +3,9 @@ package sp2fy;
 public class Main {
 
 	public static void main(String[] args) {
-		Usuario usuarioUm = new Usuario();
 		
 		try{
+			Usuario usuarioUm = new Usuario("pedrinho");
 			Album abbey = new Album("abbey road", "beatles", 1969);
 			abbey.adicionaMusica(new Musica("come together", 4, "rock"));
 			abbey.adicionaMusica(new Musica("octopus garden", 4, "rock"));

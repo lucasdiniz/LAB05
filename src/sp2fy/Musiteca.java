@@ -1,6 +1,8 @@
 package sp2fy;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class Musiteca {
@@ -279,7 +281,53 @@ public class Musiteca {
 	public HashMap<String, Playlist> getPlaylists(){
 		return this.playlists;
 	}
-
+	
+	public ArrayList<Album> sortedAlbuns(){
+		ArrayList<Album> albunsOrdenados = this.albuns;
+		Collections.sort(albunsOrdenados); //Usa o compareTo padrao da classe album
+		return albunsOrdenados;
+	}
+	
+	public ArrayList<Album> sortedAlbunsPorArtista(){
+		ArrayList<Album> albunsOrdenados = this.albuns;
+		
+		Comparator <Album> porArtista = new Comparator <Album>(){
+			public int compare(Album um,Album dois){
+				return um.getArtista().compareTo(dois.getArtista());
+			}
+		};
+		
+		Collections.sort(albunsOrdenados,porArtista);
+		return albunsOrdenados;
+	}
+	
+	public ArrayList<Album> sortedAlbunsPorDuracao(){
+		ArrayList<Album> albunsOrdenados = this.albuns;
+		
+		Comparator<Album> porDuracao = new Comparator <Album>(){
+			public int compare(Album um,Album dois){
+				return um.getDuracao() - dois.getDuracao();
+			}
+		};
+		
+		Collections.sort(albunsOrdenados,porDuracao);
+		return albunsOrdenados;
+	}
+	
+	public ArrayList<Album> sortedAlbunsPorQuantidadeDeMusicas(){
+		ArrayList<Album> albunsOrdenados = this.albuns;
+		
+		Comparator<Album> porQuantidadeDeMusicas = new Comparator <Album>(){
+			public int compare(Album um,Album dois){
+				return um.getTamanho() - dois.getTamanho();
+			}
+		};
+		
+		Collections.sort(albunsOrdenados,porQuantidadeDeMusicas);
+		return albunsOrdenados;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

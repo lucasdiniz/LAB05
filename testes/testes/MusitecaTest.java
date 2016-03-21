@@ -52,6 +52,7 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.adicionaAlbum(null);
+			fail("Nao deveria chegar aqui.");
 			
 		} catch(Exception ex){
 			assertEquals("Album a ser adicionado nao pode ser nulo.", ex.getMessage());
@@ -73,24 +74,28 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.adicionaMusicaNoAlbum(something, "album inexistente");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Album inexistente.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.adicionaMusicaNoAlbum(null, "album inexistente");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Musica e nome do album nao podem ser null.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.adicionaMusicaNoAlbum(something, null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Musica e nome do album nao podem ser null.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.adicionaMusicaNoAlbum(something, "  ");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome do album nao podem ser vazio.", ex.getMessage());
 		}
@@ -109,24 +114,28 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.removeMusicaNoAlbum(something, "album inexistente");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Album inexistente.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.removeMusicaNoAlbum(null, "album inexistente");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Musica e nome do album nao podem ser null.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.removeMusicaNoAlbum(something, null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Musica e nome do album nao podem ser null.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.removeMusicaNoAlbum(something, "  ");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome do album nao podem ser vazio.", ex.getMessage());
 		}
@@ -146,6 +155,7 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.pesquisaMusica(null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Musica nao pode ser nula.", ex.getMessage());
 		}
@@ -164,24 +174,28 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.removeMusicaNoAlbumPeloNome("something", "album inexistente");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Album inexistente.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.removeMusicaNoAlbumPeloNome(null, "abbey road");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da musica e nome do album nao podem ser null.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.removeMusicaNoAlbumPeloNome("something", null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da musica e nome do album nao podem ser null.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.removeMusicaNoAlbumPeloNome("something", "  ");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da musica e nome do album nao podem ser null.", ex.getMessage());
 		}
@@ -200,12 +214,14 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.pesquisaMusicaPeloNome(null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da musica nao pode ser nulo ou vazio.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.pesquisaMusicaPeloNome(" ");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da musica nao pode ser nulo ou vazio.", ex.getMessage());
 		}
@@ -223,6 +239,7 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.removeAlbum(null);
+			fail("Nao deveria chegar aqui.");
 			
 		}catch(Exception ex){
 			assertEquals("Album a ser removido nao pode ser nulo.", ex.getMessage());
@@ -242,6 +259,7 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.existeAlbum(null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Album a ser pesquisado nao pode ser nulo.", ex.getMessage());
 		}
@@ -278,18 +296,21 @@ public class MusitecaTest {
 	public void testGetDuracaoPlaylist(){
 		try{
 			theBeatles.getDuracaoPlaylist("nao existe");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Playlist inexistente.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.getDuracaoPlaylist(" ");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da playlist nao pode ser vazio ou null.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.getDuracaoPlaylist(null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da playlist nao pode ser vazio ou null.", ex.getMessage());
 		}
@@ -321,13 +342,15 @@ public class MusitecaTest {
 		}
 		
 		try{
-			assertEquals(true,theBeatles.adicionaPlaylist("coletanea", "Revolver", 1));
+			theBeatles.adicionaPlaylist("coletanea", "Revolver", 1);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Album nao pertence ao Perfil especificado", ex.getMessage());
 		}
 		
 		try{
-			assertEquals(true,theBeatles.adicionaPlaylist("coletanea", "Abbey Road", 100));
+			theBeatles.adicionaPlaylist("coletanea", "Abbey Road", 100);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Numero da faixa maior que o total de musicas no album.", ex.getMessage());
 			/*Excecao relancada da classe Album*/
@@ -361,18 +384,21 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.removeMusicaDaPlaylist("inexistente", something);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Playlist inexistente.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.removeMusicaDaPlaylist(" ", something);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da playlist nao pode ser vazio.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.removeMusicaDaPlaylist(null, something);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da playlist e a musica nao podem ser null.", ex.getMessage());
 		}
@@ -380,6 +406,7 @@ public class MusitecaTest {
 		try{
 			theBeatles.adicionaPlaylist("coletanea", "Abbey Road", 1);
 			theBeatles.removeMusicaDaPlaylist("coletanea", null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da playlist e a musica nao podem ser null.", ex.getMessage());
 		}
@@ -412,18 +439,21 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.removeMusicaDaPlaylistPeloNome("inexistente", "something");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Playlist inexistente.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.removeMusicaDaPlaylistPeloNome(" ", "something");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da playlist e nome da musica nao devem ser vazios ou null.", ex.getMessage());
 		}
 		
 		try{
 			theBeatles.removeMusicaDaPlaylistPeloNome(null, "something");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da playlist e nome da musica nao devem ser vazios ou null.", ex.getMessage());
 		}
@@ -431,6 +461,7 @@ public class MusitecaTest {
 		try{
 			theBeatles.adicionaPlaylist("coletanea", "Abbey Road", 1);
 			theBeatles.removeMusicaDaPlaylistPeloNome("coletanea", null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da playlist e nome da musica nao devem ser vazios ou null.", ex.getMessage());
 		}
@@ -453,7 +484,8 @@ public class MusitecaTest {
 		}
 		
 		try{
-			theBeatles.pesquisaMusicaNaPlaylist("coletanea", comeTogether);
+			theBeatles.pesquisaMusicaNaPlaylist("inexistente", comeTogether);
+			fail("Nao deveria chegar aqui.");
 			
 		}catch(Exception ex){
 			assertEquals("Playlist inexistente.", ex.getMessage());
@@ -461,6 +493,7 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.pesquisaMusicaNaPlaylist(" ", comeTogether);
+			fail("Nao deveria chegar aqui.");
 			
 		}catch(Exception ex){
 			assertEquals("Nome da playlist nao pode ser vazio.", ex.getMessage());
@@ -468,6 +501,7 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.pesquisaMusicaNaPlaylist(null, comeTogether);
+			fail("Nao deveria chegar aqui.");
 			
 		}catch(Exception ex){
 			assertEquals("Nome da playlist e a musica nao podem ser null.", ex.getMessage());
@@ -476,6 +510,7 @@ public class MusitecaTest {
 		try{
 			theBeatles.adicionaPlaylist("coletanea", "Abbey road", 1);
 			theBeatles.pesquisaMusicaNaPlaylist("coletanea", null);
+			fail("Nao deveria chegar aqui.");
 			
 		}catch(Exception ex){
 			assertEquals("Nome da playlist e a musica nao podem ser null.", ex.getMessage());
@@ -499,7 +534,8 @@ public class MusitecaTest {
 		}
 		
 		try{
-			theBeatles.pesquisaMusicaNaPlaylistPeloNome("coletanea", "come together");
+			theBeatles.pesquisaMusicaNaPlaylistPeloNome("inexistente", "come together");
+			fail("Nao deveria chegar aqui.");
 			
 		}catch(Exception ex){
 			assertEquals("Playlist inexistente.", ex.getMessage());
@@ -507,6 +543,7 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.pesquisaMusicaNaPlaylistPeloNome(" ", "come together");
+			fail("Nao deveria chegar aqui.");
 			
 		}catch(Exception ex){
 			assertEquals("Nome da playlist e nome da musica nao devem ser vazios ou null.", ex.getMessage());
@@ -514,6 +551,7 @@ public class MusitecaTest {
 		
 		try{
 			theBeatles.pesquisaMusicaNaPlaylistPeloNome(null, "come together");
+			fail("Nao deveria chegar aqui.");
 			
 		}catch(Exception ex){
 			assertEquals("Nome da playlist e nome da musica nao devem ser vazios ou null.", ex.getMessage());
@@ -522,6 +560,7 @@ public class MusitecaTest {
 		try{
 			theBeatles.adicionaPlaylist("coletanea", "Abbey road", 1);
 			theBeatles.pesquisaMusicaNaPlaylistPeloNome("coletanea", null);
+			fail("Nao deveria chegar aqui.");
 			
 		}catch(Exception ex){
 			assertEquals("Nome da playlist e nome da musica nao devem ser vazios ou null.", ex.getMessage());
@@ -566,6 +605,113 @@ public class MusitecaTest {
 		}catch(Exception ex){
 			fail("Nao deveria lancar excecao.");
 		}
+	}
+	
+	@Test
+	public void testSortedAlbuns(){
+		try{
+			Album primeiro = new Album("a", "a", 2000);
+			Album segundo = new Album("b", "b", 2001);
+			Album terceiro = new Album("c", "c", 2002);
+			Musiteca musitecaTeste = new Musiteca();
+			
+			musitecaTeste.adicionaAlbum(primeiro);
+			musitecaTeste.adicionaAlbum(segundo);
+			musitecaTeste.adicionaAlbum(terceiro);
+			
+			ArrayList<Album> ordenadoPeloAno = musitecaTeste.sortedAlbuns();
+			assertEquals(ordenadoPeloAno.get(0),primeiro);
+			assertEquals(ordenadoPeloAno.get(1),segundo);
+			assertEquals(ordenadoPeloAno.get(2),terceiro);
+					
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
+	}
+	
+	@Test
+	public void testSortedAlbunsPorArtista(){
+		try{
+			Album primeiro = new Album("a", "a", 2000);
+			Album segundo = new Album("b", "b", 2001);
+			Album terceiro = new Album("c", "c", 2002);
+			Musiteca musitecaTeste = new Musiteca();
+			
+			musitecaTeste.adicionaAlbum(primeiro);
+			musitecaTeste.adicionaAlbum(segundo);
+			musitecaTeste.adicionaAlbum(terceiro);
+			
+			ArrayList<Album> ordenadoPorArtista = musitecaTeste.sortedAlbunsPorArtista();
+			assertEquals(ordenadoPorArtista.get(0),primeiro);
+			assertEquals(ordenadoPorArtista.get(1),segundo);
+			assertEquals(ordenadoPorArtista.get(2),terceiro);
+					
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
+	}
+	
+	@Test
+	public void testSortedAlbunsPorDuracao(){
+		try{
+			Album primeiro = new Album("a", "a", 2000);
+			primeiro.adicionaMusica(new Musica("A", 5, "rock"));
+			
+			Album segundo = new Album("b", "b", 2001);
+			segundo.adicionaMusica(new Musica("B", 10, "rock"));
+			
+			Album terceiro = new Album("c", "c", 2002);
+			terceiro.adicionaMusica(new Musica("A", 15, "rock"));
+			
+			Musiteca musitecaTeste = new Musiteca();
+			
+			musitecaTeste.adicionaAlbum(primeiro);
+			musitecaTeste.adicionaAlbum(segundo);
+			musitecaTeste.adicionaAlbum(terceiro);
+			
+			ArrayList<Album> ordenadoPorDuracao = musitecaTeste.sortedAlbunsPorDuracao();
+			assertEquals(ordenadoPorDuracao.get(0),primeiro);
+			assertEquals(ordenadoPorDuracao.get(1),segundo);
+			assertEquals(ordenadoPorDuracao.get(2),terceiro);
+					
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
+	}
+	
+	@Test
+	public void testSortedAlbunsPorQuantidadeDeMusicas(){
+		try{
+			Album primeiro = new Album("a", "a", 2000);
+			primeiro.adicionaMusica(new Musica("A", 5, "rock"));
+			
+			Album segundo = new Album("b", "b", 2001);
+			segundo.adicionaMusica(new Musica("A", 5, "rock"));
+			segundo.adicionaMusica(new Musica("B", 5, "rock"));
+			
+			Album terceiro = new Album("c", "c", 2002);
+			terceiro.adicionaMusica(new Musica("A", 5, "rock"));
+			terceiro.adicionaMusica(new Musica("B", 5, "rock"));
+			terceiro.adicionaMusica(new Musica("C", 5, "rock"));
+			
+			Musiteca musitecaTeste = new Musiteca();
+			
+			musitecaTeste.adicionaAlbum(primeiro);
+			musitecaTeste.adicionaAlbum(segundo);
+			musitecaTeste.adicionaAlbum(terceiro);
+			
+			ArrayList<Album> ordenadoPeloAno = musitecaTeste.sortedAlbunsPorQuantidadeDeMusicas();
+			assertEquals(ordenadoPeloAno.get(0),primeiro);
+			assertEquals(ordenadoPeloAno.get(1),segundo);
+			assertEquals(ordenadoPeloAno.get(2),terceiro);
+					
+		}catch(Exception ex){
+			fail("Nao deveria lancar excecao.");
+		}
+		
 	}
 	
 }

@@ -1,8 +1,10 @@
 package testes;
 
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import sp2fy.Musica;
 import sp2fy.Playlist;
 
@@ -40,6 +42,7 @@ public class PlaylistTest {
 		
 		try{
 			playlistUm.contemMusica(null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Musica a ser buscada nao pode ser null.", ex.getMessage());
 		}
@@ -61,6 +64,7 @@ public class PlaylistTest {
 		
 		try{
 			playlistUm.contemMusicaPeloNome(null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da musica a ser buscada nao pode ser vaziou ou null.", ex.getMessage());
 		}
@@ -83,12 +87,14 @@ public class PlaylistTest {
 		
 		try{
 			playlistUm.adicionaMusica(null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Musica a ser adicionada nao pode ser null.", ex.getMessage());
 		}
 		
 		try{
 			playlistUm.adicionaMusica(new Musica(null, 4, "funk"));
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Titulo da musica nao pode ser nulo ou vazio.", ex.getMessage());
 		}
@@ -96,6 +102,7 @@ public class PlaylistTest {
 
 		try{
 			playlistUm.adicionaMusica(new Musica("meu carro virou motel", 4, ""));
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Genero da musica nao pode ser nulo ou vazio.", ex.getMessage());
 		}
@@ -117,6 +124,7 @@ public class PlaylistTest {
 		
 		try{
 			playlistUm.removeMusica(null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Musica a ser removida nao pode ser null.", ex.getMessage());
 		}
@@ -139,6 +147,7 @@ public class PlaylistTest {
 		
 		try{
 			playlistUm.removeMusicaPeloNome("");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Nome da musica a ser removida nao pode ser vazio ou nulo.", ex.getMessage());
 		}

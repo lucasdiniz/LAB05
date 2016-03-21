@@ -5,9 +5,13 @@ import java.util.ArrayList;
 public class Usuario {
 
 	private Musiteca biblioteca;
+	private String nome;
 	
-	
-	public Usuario(){
+	public Usuario(String nome)throws Exception{
+		if(nome == null || nome.trim().equals("")){
+			throw new Exception("Nome do usuario nao pode ser vazio ou nulo.");
+		}
+		this.nome = nome;
 		biblioteca = new Musiteca();
 	}
 	

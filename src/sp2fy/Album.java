@@ -1,6 +1,7 @@
 package sp2fy;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Album implements Comparable<Album>{
 	
@@ -9,7 +10,7 @@ public class Album implements Comparable<Album>{
 	private String titulo,artista;
 	private int ano;
 	private boolean isFavorite;
-
+	
 	public Album(String titulo,String artista,int ano) throws Exception{
 		
 		setArtista(artista);
@@ -64,6 +65,10 @@ public class Album implements Comparable<Album>{
 	
 	public String getArtista(){
 		return this.artista;
+	}
+	
+	public int getTamanho(){
+		return this.faixas.size();
 	}
 	
 	
@@ -174,4 +179,6 @@ public class Album implements Comparable<Album>{
 	public int compareTo(Album outroAlbum) {
 		return this.ano - outroAlbum.getAno();
 	}
+	
+	
 }

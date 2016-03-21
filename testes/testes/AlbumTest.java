@@ -63,6 +63,7 @@ public class AlbumTest {
 		
 		try{
 			Album tituloErrado = new Album(null, "Metallica", 2008);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Titulo do album nao pode ser vazio ou nulo.",ex.getMessage());
 		}
@@ -70,6 +71,7 @@ public class AlbumTest {
 		
 		try{
 			Album tituloErrado = new Album("", "Metallica", 2008);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals(ex.getMessage(),"Titulo do album nao pode ser vazio ou nulo.");
 		}
@@ -77,6 +79,7 @@ public class AlbumTest {
 		
 		try{
 			Album artistaErrado = new Album("Death Magnetic", null , 2008);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals(ex.getMessage(),"Nome do artista nao pode ser vazio ou nulo.");
 		}
@@ -91,6 +94,7 @@ public class AlbumTest {
 		
 		try{
 			Album anoErrado = new Album("Death Magnetic", "Metallica" , -1);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals(ex.getMessage(),"Ano do album deve ser maior que 1900.");
 		}
@@ -98,6 +102,7 @@ public class AlbumTest {
 		
 		try{
 			Album anoErrado = new Album("Death Magnetic", "Metallica" , 1900);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals(ex.getMessage(),"Ano do album deve ser maior que 1900.");
 		}
@@ -120,12 +125,14 @@ public class AlbumTest {
 		
 		try{
 			theStrokes.getMusicaNaFaixa(10);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Numero da faixa maior que o total de musicas no album.",ex.getMessage());
 		}
 		
 		try{
 			theStrokes.getMusicaNaFaixa(-1);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("O numero da faixa deve ser positivo.",ex.getMessage());
 		}
@@ -149,6 +156,7 @@ public class AlbumTest {
 		
 		try{
 			theStrokes.existeMusica(" ");
+			fail("Nao deveria chegar aqui.");
 		}
 		catch(Exception ex){
 			assertEquals("Musica a ser buscada nao pode ser nula ou vazia.", ex.getMessage());
@@ -156,6 +164,7 @@ public class AlbumTest {
 		
 		try{
 			theStrokes.existeMusica(null);
+			fail("Nao deveria chegar aqui.");
 		}
 		catch(Exception ex){
 			assertEquals("Musica a ser buscada nao pode ser nula ou vazia.", ex.getMessage());
@@ -170,6 +179,7 @@ public class AlbumTest {
 		
 		try{
 			metallica.adicionaMusica(null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Musica a ser adicionada nao pode ser nula.", ex.getMessage());
 		}
@@ -210,12 +220,14 @@ public class AlbumTest {
 		
 		try{
 			metallica.removeMusica(" ");
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Musica a ser removida nao pode ser nula ou vazia.", ex.getMessage());
 		}
 		
 		try{
 			metallica.removeMusica(null);
+			fail("Nao deveria chegar aqui.");
 		}catch(Exception ex){
 			assertEquals("Musica a ser removida nao pode ser nula ou vazia.", ex.getMessage());
 		}
